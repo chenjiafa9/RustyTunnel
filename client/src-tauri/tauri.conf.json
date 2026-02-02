@@ -1,11 +1,14 @@
 {
+  "productName": "RustyTunnel",
+  "version": "1.0.0",
   "build": {
-    "beforeBuildCommand": "npm run build",
-    "beforeDevCommand": "npm run dev",
-    "devPath": "http://localhost:5173",
-    "frontendDist": "../dist"
+    "beforeBuildCommand": "cd src-tauri/frontend && npm run build",
+    "beforeDevCommand": "cd src-tauri/frontend && npm run dev",
+    "devUrl": "http://localhost:5173",
+    "frontendDist": "../src-tauri/dist"
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "title": "RustyTunnel VPN",
@@ -25,32 +28,20 @@
       "csp": null
     }
   },
-  "package": {
-    "productName": "RustyTunnel VPN",
-    "version": "1.0.0"
+  "bundle": {
+    "active": true,
+    "targets": [
+      "msi",
+      "nsis"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
   },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      },
-      "dialog": {
-        "all": false,
-        "open": true
-      }
-    },
-    "bundle": {
-      "active": true,
-      "targets": ["msi", "nsis"],
-      "identifier": "com.rustytunnel.vpn",
-      "icon": ["../public/icon.png"]
-    },
-    "cli": {
-      "description": "RustyTunnel VPN Client",
-      "longDescription": "A fast and secure VPN client built with Rust and Tauri",
-      "version": "1.0.0"
-    }
-  }
+  "plugins": {},
+  "identifier": "com.rustytunnel.vpn"
 }
